@@ -30,13 +30,13 @@ public class RoomController {
 
     @PutMapping
     public ResponseEntity<Room> updateRoom(@RequestBody Room room) {
-        return new ResponseEntity<>(this.roomManagementService.updateRoom(room), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(this.roomManagementService.updateRoom(room), HttpStatus.OK);
     }
 
     @DeleteMapping
     public ResponseEntity<String> deleteRoom(@RequestParam(value = "roomId") long roomId) {
         this.roomManagementService.deleteRoom(roomId);
-        return new ResponseEntity<>("The room was deleted successfully.", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("The room was deleted successfully.", HttpStatus.OK);
     }
 
     @ResponseStatus

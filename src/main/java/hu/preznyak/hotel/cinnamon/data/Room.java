@@ -20,6 +20,8 @@ public class Room {
     private Integer capacity;
     @Column(name = "TYPE")
     private String type;
+    @Column(name = "PRICE_PER_NIGHT")
+    private Integer pricePerNight;
 
     public long getId() {
         return id;
@@ -69,15 +71,12 @@ public class Room {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "Room{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", roomNumber='" + roomNumber + '\'' +
-                ", bedInfo='" + bedInfo + '\'' +
-                ", capacity=" + capacity +
-                ", type='" + type + '\'' +
-                '}';
+    public Integer getPricePerNight() {
+        return pricePerNight;
     }
+
+    public void setPricePerNight(Integer pricePerNight) {
+        this.pricePerNight = pricePerNight;
+    }
+
 }

@@ -20,7 +20,7 @@ public class ReservationController {
 
     @GetMapping
     public ResponseEntity<List<RoomReservation>> getRoomReservations() {
-        return new ResponseEntity<>(this.reservationManagementService.getAllReservation(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(this.reservationManagementService.getAllReservation(), HttpStatus.OK);
     }
 
     @PostMapping

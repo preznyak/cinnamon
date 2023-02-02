@@ -20,7 +20,7 @@ public class GuestController {
 
     @GetMapping
     public ResponseEntity<List<Guest>> getAllGuest(){
-        return new ResponseEntity<>(this.guestManagementService.findAllGuest(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(this.guestManagementService.findAllGuest(), HttpStatus.OK);
     }
 
     @PostMapping
@@ -30,13 +30,13 @@ public class GuestController {
 
     @PutMapping
     public ResponseEntity<Guest> updateGuest(@RequestBody Guest guest) {
-        return new ResponseEntity<>(this.guestManagementService.updateGuest(guest), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(this.guestManagementService.updateGuest(guest), HttpStatus.OK);
     }
 
     @DeleteMapping
     public ResponseEntity<String> deleteGuest(@RequestParam long guestId) {
         this.guestManagementService.deleteGuest(guestId);
-        return new ResponseEntity<>("Guest successfully deleted.", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Guest successfully deleted.", HttpStatus.OK);
     }
 
     @ResponseStatus
