@@ -2,9 +2,12 @@ package hu.preznyak.hotel.cinnamon.service;
 
 import hu.preznyak.hotel.cinnamon.business.RoomReservation;
 import hu.preznyak.hotel.cinnamon.data.Reservation;
+import hu.preznyak.hotel.cinnamon.data.Room;
 import hu.preznyak.hotel.cinnamon.repo.GuestRepository;
 import hu.preznyak.hotel.cinnamon.repo.ReservationRepository;
 import hu.preznyak.hotel.cinnamon.repo.RoomRepository;
+import hu.preznyak.hotel.cinnamon.util.DiscountHelper;
+import hu.preznyak.hotel.cinnamon.util.PriceCalculator;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,14 +19,20 @@ public class ReservationManagementService {
     private final ReservationRepository reservationRepository;
     private final GuestRepository guestRepository;
     private final RoomRepository roomRepository;
+    private final PriceCalculator priceCalculator;
 
-    public ReservationManagementService(ReservationRepository reservationRepository, GuestRepository guestRepository, RoomRepository roomRepository) {
+    public ReservationManagementService(ReservationRepository reservationRepository, GuestRepository guestRepository, RoomRepository roomRepository, PriceCalculator priceCalculator) {
         this.reservationRepository = reservationRepository;
         this.guestRepository = guestRepository;
         this.roomRepository = roomRepository;
+        this.priceCalculator = priceCalculator;
     }
 
     public Reservation createReservation(Reservation reservation) {
+        Room room = this.roomRepository.findById(reservation.getRoomId()).orElseThrow(
+                () -> new NoSuchElementException("Room not found.")
+        );
+        reservation.setPrice(this.priceCalculator.calculatePriceForGivenPeriod(reservation.getReservationDateStart(), reservation.getReservationDateEnd(), room));
         return this.reservationRepository.save(reservation);
     }
 

@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -48,6 +49,12 @@ public class GuestController {
     @ResponseStatus
     @ExceptionHandler(UnsupportedOperationException.class)
     public ResponseEntity<String> unsupportedOperation(UnsupportedOperationException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ResponseStatus
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<String> constraintViolation(ConstraintViolationException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

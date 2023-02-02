@@ -1,6 +1,9 @@
 package hu.preznyak.hotel.cinnamon.data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "GUEST")
@@ -11,10 +14,13 @@ public class Guest {
     @Column(name = "GUEST_ID")
     private long id;
     @Column(name = "LAST_NAME")
+    @NotNull
     private String lastName;
     @Column(name = "FIRST_NAME")
+    @NotNull
     private String firstName;
     @Column(name = "EMAIL_ADDRESS")
+    @Email
     private String emailAddress;
     @Column(name = "COUNTRY")
     private String country;
