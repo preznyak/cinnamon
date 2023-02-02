@@ -1,7 +1,14 @@
 package hu.preznyak.hotel.cinnamon.service;
 
+import hu.preznyak.hotel.cinnamon.config.BatchConfiguration;
 import hu.preznyak.hotel.cinnamon.data.Discount;
 import hu.preznyak.hotel.cinnamon.repo.DiscountRepository;
+import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.core.JobParametersInvalidException;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
+import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -9,14 +16,25 @@ import java.util.*;
 @Service
 public class DiscountManagementService {
     private final DiscountRepository discountRepository;
+    private final BatchConfiguration batchConfiguration;
+    public final JobLauncher jobLauncher;
 
-    public DiscountManagementService(DiscountRepository discountRepository) {
+    public DiscountManagementService(DiscountRepository discountRepository, BatchConfiguration batchConfiguration, JobLauncher jobLauncher) {
         this.discountRepository = discountRepository;
+        this.batchConfiguration = batchConfiguration;
+        this.jobLauncher = jobLauncher;
     }
 
     public Discount createDiscount(Discount discount) {
         if(Objects.isNull(discount)){
             throw new UnsupportedOperationException("Discount cannot be null.");
+        }
+        try {
+            JobParametersBuilder parametersBuilder = new JobParametersBuilder();
+            this.jobLauncher.run(batchConfiguration.sendEmailJob(), parametersBuilder.toJobParameters());
+        } catch (JobInstanceAlreadyCompleteException | JobExecutionAlreadyRunningException |
+                 JobParametersInvalidException | JobRestartException e) {
+            throw new RuntimeException(e);
         }
         return this.discountRepository.save(discount);
     }
