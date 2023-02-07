@@ -10,12 +10,13 @@ INSERT INTO ROOM (NAME, ROOM_NUMBER, BED_INFO, CAPACITY, TYPE, PRICE_PER_NIGHT) 
 
 -- Q=queen bed, K=king size bed, S=double bed
 
-INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER) VALUES ('John', 'Cena', 'john2cena@gmail.com', 'Hungary', 'Debrecen, Dozsa str. 5', 'Hajdu-Bihar', '+36504256987');
-INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER) VALUES ('Papp', 'Janos', 'ezittpappjancsi1@gmail.com', 'Hungary', 'Pecs, Kossuth Lajos str. 91', 'Baranya', '+52458961121');
-INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER) VALUES ('Mora', 'Ferenc', 'moraferike77@gmail.com', 'Hungary', 'Nyiregyhaza, Forradalom str. 73', 'Szabolcs-Szatmar-Bereg', '+36924568127');
-INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER) VALUES ('Lukacs', 'Jozsef', 'ljozsi485@gmail.com', 'Hungary', 'Debrecen, Derek str. 22', 'Hajdu-Bihar', '+40725147896');
-INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER) VALUES ('Lakatos', 'Arnold', 'lakatosarny@gmail.com', 'Hungary', 'Budapest, Blaha Lujza str. 98.', 'Pest', '+40734111111');
-INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER) VALUES ('Juhasz', 'Roland', 'juhaszroli22@gmail.com', 'Hungary', 'Letavertes, Sandor str. 15', 'Hajdu-Bihar', '+36458214664');
+INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER, GENDER) VALUES ('John', 'Cena', 'john2cena@gmail.com', 'Hungary', 'Debrecen, Dozsa str. 5', 'Hajdu-Bihar', '+36504256987', 'Male');
+INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER, GENDER) VALUES ('Papp', 'Janos', 'ezittpappjancsi1@gmail.com', 'Hungary', 'Pecs, Kossuth Lajos str. 91', 'Baranya', '+52458961121', 'Male');
+INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER, GENDER) VALUES ('Mora', 'Ferenc', 'moraferike77@gmail.com', 'Hungary', 'Nyiregyhaza, Forradalom str. 73', 'Szabolcs-Szatmar-Bereg', '+36924568127', 'Male');
+INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER, GENDER) VALUES ('Lukacs', 'Jozsef', 'ljozsi485@gmail.com', 'Hungary', 'Debrecen, Derek str. 22', 'Hajdu-Bihar', '+40725147896', 'Male');
+INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER, GENDER) VALUES ('Lakatos', 'Arnold', 'lakatosarny@gmail.com', 'Hungary', 'Budapest, Blaha Lujza str. 98.', 'Pest', '+40734111111', 'Male');
+INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER, GENDER) VALUES ('Juhasz', 'Roland', 'juhaszroli22@gmail.com', 'Hungary', 'Letavertes, Sandor str. 15', 'Hajdu-Bihar', '+36458214664', 'Male');
+INSERT INTO GUEST (LAST_NAME, FIRST_NAME, EMAIL_ADDRESS, COUNTRY, ADDRESS, STATE, PHONE_NUMBER, GENDER) VALUES ('Gorog', 'Dorottya', 'gdori@gmail.com', 'Hungary', 'Letavertes, Istvan str. 74', 'Hajdu-Bihar', '+36458214664', 'Female');
 
 INSERT INTO RESERVATION (ROOM_ID, GUEST_ID, RES_DATE_START, RES_DATE_END, PRICE) VALUES (1, 2, '2022-01-01', '2022-01-03', 50);
 INSERT INTO RESERVATION (ROOM_ID, GUEST_ID, RES_DATE_START, RES_DATE_END, PRICE) VALUES (1, 2, '2022-02-04', '2022-02-14', 50);

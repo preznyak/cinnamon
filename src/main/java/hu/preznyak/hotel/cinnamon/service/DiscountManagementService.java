@@ -1,6 +1,6 @@
 package hu.preznyak.hotel.cinnamon.service;
 
-import hu.preznyak.hotel.cinnamon.config.BatchConfiguration;
+import hu.preznyak.hotel.cinnamon.config.EmailSenderConfiguration;
 import hu.preznyak.hotel.cinnamon.data.Discount;
 import hu.preznyak.hotel.cinnamon.repo.DiscountRepository;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -16,12 +16,12 @@ import java.util.*;
 @Service
 public class DiscountManagementService {
     private final DiscountRepository discountRepository;
-    private final BatchConfiguration batchConfiguration;
+    private final EmailSenderConfiguration emailSenderConfiguration;
     public final JobLauncher jobLauncher;
 
-    public DiscountManagementService(DiscountRepository discountRepository, BatchConfiguration batchConfiguration, JobLauncher jobLauncher) {
+    public DiscountManagementService(DiscountRepository discountRepository, EmailSenderConfiguration emailSenderConfiguration, JobLauncher jobLauncher) {
         this.discountRepository = discountRepository;
-        this.batchConfiguration = batchConfiguration;
+        this.emailSenderConfiguration = emailSenderConfiguration;
         this.jobLauncher = jobLauncher;
     }
 
@@ -31,7 +31,7 @@ public class DiscountManagementService {
         }
         try {
             JobParametersBuilder parametersBuilder = new JobParametersBuilder();
-            this.jobLauncher.run(batchConfiguration.sendEmailJob(), parametersBuilder.toJobParameters());
+            this.jobLauncher.run(emailSenderConfiguration.sendEmailJob(), parametersBuilder.toJobParameters());
         } catch (JobInstanceAlreadyCompleteException | JobExecutionAlreadyRunningException |
                  JobParametersInvalidException | JobRestartException e) {
             throw new RuntimeException(e);

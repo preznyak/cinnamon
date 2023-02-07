@@ -26,6 +26,8 @@ public class Guest {
     private String state;
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
+    @Column(name = "GENDER")
+    private Gender gender;
 
     public long getId() {
         return id;
@@ -91,6 +93,14 @@ public class Guest {
         this.phoneNumber = phoneNumber;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
         return "Guest{" +
@@ -102,6 +112,7 @@ public class Guest {
                 ", address='" + address + '\'' +
                 ", state='" + state + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", gender=" + gender +
                 '}';
     }
 }

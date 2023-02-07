@@ -1,5 +1,6 @@
 package hu.preznyak.hotel.cinnamon.mapper;
 
+import hu.preznyak.hotel.cinnamon.data.Gender;
 import hu.preznyak.hotel.cinnamon.data.Guest;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -18,6 +19,7 @@ public class GuestRowMapper implements RowMapper<Guest> {
         guest.setState(rs.getString("state"));
         guest.setCountry(rs.getString("country"));
         guest.setEmailAddress(rs.getString("email_address"));
+        guest.setGender(Gender.fromValue(rs.getString("gender")));
         return guest;
     }
 }
